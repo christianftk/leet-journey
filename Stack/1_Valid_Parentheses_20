@@ -1,0 +1,21 @@
+from collections import deque
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = deque()
+        for p in s:
+            if p == "(" or p == "{" or p == "[":
+                stack.append(p)
+            else:
+                if not len(stack):
+                    return False
+                openP = stack.pop()
+                print(openP)
+                if (openP == '{' and p != '}') or (openP == '[' and p != ']') or (openP == '(' and p != ')'): 
+                    return False
+        return not len(stack) # Concise way - if the stack is empty, return True
+
+s1 = "()[]{}"
+s2 = "(]"
+
+print(Solution.isValid(Solution,s1))
+print(Solution.isValid(Solution,s2))
